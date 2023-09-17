@@ -1,3 +1,4 @@
 # aplikasi_reservasi_dokter_candra_safitri
 
-A new Flutter project.
+A Project from Albertus Carloson Fallo
+This project is using flutter framework with dart programming language.
