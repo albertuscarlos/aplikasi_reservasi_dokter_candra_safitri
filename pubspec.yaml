@@ -1,0 +1,45 @@
+name: aplikasi_reservasi_dokter_candra_safitri
+description: A new Flutter project.
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_native_splash: ^2.3.1
+  smooth_page_indicator: ^1.1.0
+  google_fonts: ^4.0.4
+  shared_preferences: ^2.2.0
+  dropdown_search: ^5.0.6
+  intl: ^0.18.1
+  dio: ^5.3.2
+  carousel_slider: ^4.2.1
+  rxdart: ^0.27.7
+  flutter_localizations:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter_native_splash:
+  color: "#ffffff"
+  image: assets/app_splash_screen_android_12.png
+  branding: assets/app_branding_android_11.png
+  android_12:
+    image: assets/app_splash_screen_android_12.png
+    color: "#ffffff"
+    branding: assets/app_branding_android_12_coba.png
+  android: true
+  ios: true
+  web: false
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/
+    - assets/images_onboarding/
