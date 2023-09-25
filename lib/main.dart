@@ -31,7 +31,7 @@ class MainApp extends StatelessWidget {
       home: isViewed != 0 ? OnBoardingScreen() : idPasien != null ? LoginPage() : GetStartedPage(),
       localizationsDelegates: GlobalMaterialLocalizations.delegates,
         supportedLocales: [
-      const Locale('id', 'ID'), // American English
+      const Locale('id', 'ID'), // Indonesian
       ]
     );
   }

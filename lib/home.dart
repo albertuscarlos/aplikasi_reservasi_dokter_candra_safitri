@@ -1,9 +1,11 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 import 'package:aplikasi_reservasi_dokter_candra_safitri/api_controller/riwayat_reservasi_controller.dart';
 import 'package:aplikasi_reservasi_dokter_candra_safitri/api_model/riwayat_reservasi_model.dart';
 import 'package:aplikasi_reservasi_dokter_candra_safitri/intro_page/get_started_page.dart';
 import 'package:aplikasi_reservasi_dokter_candra_safitri/profile_pasien.dart';
+import 'package:aplikasi_reservasi_dokter_candra_safitri/profile_pasien_detail/profile_picture.dart';
 import 'package:http/http.dart' as http;
 import 'package:aplikasi_reservasi_dokter_candra_safitri/api_controller/pengumuman_controller.dart';
 import 'package:aplikasi_reservasi_dokter_candra_safitri/api_controller/reservasi_controller.dart';
@@ -17,6 +19,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:intl/intl.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:image_picker/image_picker.dart';
 
 class HomePage extends StatefulWidget {
   final String idPasien;
@@ -41,6 +44,7 @@ class _HomePageState extends State<HomePage> {
   String varJenisKelamin = "";
   String varTanggalLahir = "";
   String varNoTelepon = "";
+  String varFotoPasien = "";
 
   void getLoginCred () async {
     SharedPreferences pref = await SharedPreferences.getInstance();
@@ -50,6 +54,7 @@ class _HomePageState extends State<HomePage> {
       varJenisKelamin = pref.getString("jenisKelamin")!;
       varTanggalLahir = pref.getString("tanggalLahir")!;
       varNoTelepon = pref.getString("noTelepon")!;
+      varFotoPasien = pref.getString("fotoPasien")!;
       print("sharedpref = ${varIdPasien}");
     });
   }
@@ -85,36 +90,6 @@ class _HomePageState extends State<HomePage> {
     });
     
   }
-
-  
-
-// Future<void> getAllReservasi() async {
-//   var url = Uri.parse('https://reservasi.albertuscarlos-workspace.my.id/api/reservasi/');
-
-//   try {
-//     final response = await http.get(url);
-
-//     if (response.statusCode == 200) {
-//       var jsonParsed = jsonDecode(response.body);
-
-//       if (jsonParsed['data'] != null) {
-//         var reservasiData = jsonParsed['data'] as List<dynamic>;
-
-//         for (var data in reservasiData) {
-//           var reservasi = DataReservasi.fromJson(data);
-//           _streamController.sink.add(reservasi);
-//         }
-//       } else {
-//         throw Exception('Data is null');
-//       }
-//     } else {
-//       throw Exception('Failed to load Data');
-//     }
-//   } catch (e) {
-//     // Handle the error gracefully, you can add error data to the stream
-//     _streamController.sink.addError(e.toString());
-//   }
-// }
 
 Future<void> getAllReservasi() async {
   var url = Uri.parse('https://reservasi.albertuscarlos-workspace.my.id/api/reservasi/');
@@ -166,7 +141,7 @@ Future<void> getAllReservasi() async {
     final pages = [
       homePage(),
       riwayatReservasi(),
-      profilPasien(varNamaPasien, varJenisKelamin == "Laki-laki" ? 'assets/no_user.jpg' : 'assets/no_user_female.jpg'),
+      profilPasien(varNamaPasien, varFotoPasien),
     ];
     return Scaffold(
       body: RefreshIndicator(
@@ -501,6 +476,10 @@ Future<void> getAllReservasi() async {
                     ],
                   ),
                 ),
+
+                SizedBox(
+                  height: 30,
+                )
                 
               ],
             ),
@@ -1190,23 +1169,32 @@ Future<void> getAllReservasi() async {
                             SizedBox(
                               height: 120,
                               width: 120,
-                              child: CircleAvatar(
-                                backgroundImage: AssetImage(img),
-                              ),
+                              child: GestureDetector(
+                                onTap: () {
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => ViewProfilePicture(idPasien: widget.idPasien)));
+                                },
+                                child: CircleAvatar(
+                                  backgroundImage: NetworkImage(img)),
+                                )
                             ),
-                            Positioned(
-                              bottom: 0,
-                              right: 5,
-                              child: Container(
-                                height: 35,
-                                width: 35,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: Colors.grey.shade200,
-                                ),
-                                child: Icon(Icons.camera_alt_outlined, color: Colors.grey),
-                              )
-                            ),
+                            // Positioned(
+                            //   bottom: 0,
+                            //   right: 5,
+                            //   child: GestureDetector(
+                            //     onTap: () {
+                            //       _pickImage();
+                            //     },
+                            //     child: Container(
+                            //       height: 35,
+                            //       width: 35,
+                            //       decoration: BoxDecoration(
+                            //         shape: BoxShape.circle,
+                            //         color: Colors.grey.shade200,
+                            //       ),
+                            //       child: Icon(Icons.camera_alt_outlined, color: Colors.grey),
+                            //     ),
+                            //   )
+                            // ),
                           ],
                         ),
                         SizedBox(
@@ -1236,7 +1224,7 @@ Future<void> getAllReservasi() async {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               SizedBox(
-                height: 460,
+                height: 300,
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.only(
@@ -1273,7 +1261,14 @@ Future<void> getAllReservasi() async {
                           GestureDetector(
                             onTap: () async {
                               SharedPreferences pref= await SharedPreferences.getInstance();
-                              await pref.clear();    
+                              await pref.remove("idPasien");
+                              await pref.remove("namaPasien");
+                              await pref.remove("jenisKelamin");
+                              await pref.remove("tanggalLahir");
+                              await pref.remove("noTelepon");
+                              await pref.remove("fotoPasien");
+                              await pref.remove("username");
+                              await pref.remove("password");
                                 _streamController.close();
                                 // Navigate to the login or home page, for example
                               Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => GetStartedPage()),(route) => false);
