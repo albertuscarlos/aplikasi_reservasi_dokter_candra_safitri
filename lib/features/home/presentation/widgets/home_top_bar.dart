@@ -1,0 +1,51 @@
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+class HomeTopBar extends StatelessWidget {
+  const HomeTopBar({super.key, required this.varNamaPasien});
+
+  final String varNamaPasien;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "Selamat Datang,",
+              style: GoogleFonts.inter(
+                textStyle: const TextStyle(
+                  color: Color(0xff101623),
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            Text(
+              varNamaPasien,
+              style: GoogleFonts.inter(
+                textStyle: const TextStyle(
+                  color: Color(0xff101623),
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ],
+        ),
+        //User images
+        Container(
+          height: 50,
+          width: 50,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(50),
+            color: Colors.blue,
+          ),
+        ),
+      ],
+    );
+  }
+}

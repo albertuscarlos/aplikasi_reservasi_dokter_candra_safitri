@@ -1,6 +1,7 @@
-import 'package:aplikasi_reservasi_dokter_candra_safitri/intro_page/get_started_page.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/login.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/onboarding_screen.dart';
+import 'package:aplikasi_reservasi_dokter_candra_safitri/core/shared_preference.dart';
+import 'package:aplikasi_reservasi_dokter_candra_safitri/features/onboarding/presentation/pages/get_started_page.dart';
+import 'package:aplikasi_reservasi_dokter_candra_safitri/features/auth/presentation/pages/login.dart';
+import 'package:aplikasi_reservasi_dokter_candra_safitri/features/onboarding/presentation/pages/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -10,12 +11,11 @@ int? isViewed;
 String? idPasien = "";
 
 void main() async {
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Colors.transparent,
   ));
   WidgetsFlutterBinding.ensureInitialized();
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  isViewed = prefs.getInt('onBoard');
+  isViewed = await OnBoardingStore.getOnBoardInfo();
   SharedPreferences pref = await SharedPreferences.getInstance();
   idPasien = pref.getString("idPasien");
   runApp(const MainApp());
@@ -27,12 +27,15 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: isViewed != 0 ? OnBoardingScreen() : idPasien != null ? LoginPage() : GetStartedPage(),
-      localizationsDelegates: GlobalMaterialLocalizations.delegates,
-        supportedLocales: [
-      const Locale('id', 'ID'), // Indonesian
-      ]
-    );
+        debugShowCheckedModeBanner: false,
+        home: isViewed != 0
+            ? OnBoardingScreen()
+            : idPasien != null
+                ? const LoginPage()
+                : const GetStartedPage(),
+        localizationsDelegates: GlobalMaterialLocalizations.delegates,
+        supportedLocales: const [
+          Locale('id', 'ID'), // Indonesian
+        ]);
   }
 }
