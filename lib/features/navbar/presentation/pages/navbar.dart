@@ -1,41 +1,40 @@
 import 'dart:async';
+import 'dart:developer';
+import 'package:aplikasi_reservasi_dokter_candra_safitri/core/shared_preference.dart';
 import 'package:aplikasi_reservasi_dokter_candra_safitri/features/home/presentation/pages/home.dart';
 import 'package:aplikasi_reservasi_dokter_candra_safitri/features/profile_pasien/presentation/pages/profile.dart';
 import 'package:aplikasi_reservasi_dokter_candra_safitri/features/riwayat_reservasi/presentation/pages/riwayat_reservasi.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class NavBar extends StatefulWidget {
-  final String idPasien;
-  const NavBar({super.key, required this.idPasien});
+  const NavBar({super.key});
 
   @override
   State<NavBar> createState() => _NavBarState();
 }
 
 class _NavBarState extends State<NavBar> {
-  int _currentIndex = 0;
+  final ValueNotifier<int> _currentIndex = ValueNotifier(0);
 
-  //Data from login
-  String varIdPasien = "";
-  String varNamaPasien = "";
-  String varJenisKelamin = "";
-  String varTanggalLahir = "";
-  String varNoTelepon = "";
-  String varFotoPasien = "";
+  ValueNotifier<String> idPasien = ValueNotifier('');
+  ValueNotifier<String> namaPasien = ValueNotifier('');
+  ValueNotifier<String> jenisKelamin = ValueNotifier('');
+  ValueNotifier<String> tanggalLahir = ValueNotifier('');
+  ValueNotifier<String> noTelepon = ValueNotifier('');
+  ValueNotifier<String> fotoPasien = ValueNotifier('');
+  ValueNotifier<String> username = ValueNotifier('');
 
   void getLoginCred() async {
-    SharedPreferences pref = await SharedPreferences.getInstance();
-    setState(() {
-      varIdPasien = pref.getString("idPasien")!;
-      varNamaPasien = pref.getString("namaPasien")!;
-      varJenisKelamin = pref.getString("jenisKelamin")!;
-      varTanggalLahir = pref.getString("tanggalLahir")!;
-      varNoTelepon = pref.getString("noTelepon")!;
-      varFotoPasien = pref.getString("fotoPasien")!;
-      print("sharedpref = $varIdPasien");
-    });
+    idPasien.value = (await LoginDataStore.getIdPasien())!;
+    namaPasien.value = (await LoginDataStore.getNamaPasien())!;
+    jenisKelamin.value = (await LoginDataStore.getJenisKelamin())!;
+    tanggalLahir.value = (await LoginDataStore.getTanggalLahir())!;
+    noTelepon.value = (await LoginDataStore.getNoTelepon())!;
+    fotoPasien.value = (await LoginDataStore.getFotoPasien())!;
+    username.value = (await LoginDataStore.getUsername())!;
+
+    log('Enter Home with ID: ${idPasien.value}');
   }
 
   Future<void> _reloadLoginCred() async {
@@ -50,58 +49,63 @@ class _NavBarState extends State<NavBar> {
 
   @override
   Widget build(BuildContext context) {
-    DateTime now = DateTime.now();
+    // DateTime now = DateTime.now();
 
-    DateTime morningStartTime =
-        DateTime(now.year, now.month, now.day, 5, 0); // 05:00 AM
-    DateTime morningEndTime =
-        DateTime(now.year, now.month, now.day, 6, 45); // 06:45 AM
-    DateTime afternoonStartTime =
-        DateTime(now.year, now.month, now.day, 14, 0); // 2:00 PM
-    DateTime afternoonEndTime =
-        DateTime(now.year, now.month, now.day, 18, 45); // 6:45 PM
+    // DateTime morningStartTime =
+    //     DateTime(now.year, now.month, now.day, 5, 0); // 05:00 AM
+    // DateTime morningEndTime =
+    //     DateTime(now.year, now.month, now.day, 6, 45); // 06:45 AM
+    // DateTime afternoonStartTime =
+    //     DateTime(now.year, now.month, now.day, 14, 0); // 2:00 PM
+    // DateTime afternoonEndTime =
+    //     DateTime(now.year, now.month, now.day, 18, 45); // 6:45 PM
 
-    bool isWithinMorningRange =
-        now.isAfter(morningStartTime) && now.isBefore(morningEndTime);
-    bool isWithinAfternoonRange =
-        now.isAfter(afternoonStartTime) && now.isBefore(afternoonEndTime);
+    // bool isWithinMorningRange =
+    //     now.isAfter(morningStartTime) && now.isBefore(morningEndTime);
+    // bool isWithinAfternoonRange =
+    //     now.isAfter(afternoonStartTime) && now.isBefore(afternoonEndTime);
 
     final pages = [
       const Home(),
-      RiwayatReservasi(idPasien: widget.idPasien),
+      RiwayatReservasi(idPasien: idPasien.value),
       Profile(
-          idPasien: widget.idPasien,
-          img: varFotoPasien,
-          namaPasien: varNamaPasien)
+          idPasien: idPasien.value,
+          img: fotoPasien.value,
+          namaPasien: namaPasien.value)
     ];
     return Scaffold(
-      body: RefreshIndicator(
-          onRefresh: _reloadLoginCred, child: pages[_currentIndex]),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,
-        selectedFontSize: 15,
-        selectedItemColor: const Color(0xff199A8E),
-        items: const [
-          BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              backgroundColor: Color(0xffffffff),
-              label: "Beranda"),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.history),
-              backgroundColor: Color(0xffffffff),
-              label: "Riwayat"),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              backgroundColor: Color(0xffffffff),
-              label: "Profile"),
-        ],
-        onTap: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
-        },
-      ),
-    );
+        body: ValueListenableBuilder(
+            valueListenable: _currentIndex,
+            builder: (context, value, widget) {
+              return pages[_currentIndex.value];
+            }),
+        bottomNavigationBar: ValueListenableBuilder(
+            valueListenable: _currentIndex,
+            builder: (context, value, widget) {
+              return BottomNavigationBar(
+                currentIndex: value,
+                selectedFontSize: 15,
+                selectedItemColor: const Color(0xff199A8E),
+                items: const [
+                  BottomNavigationBarItem(
+                      icon: Icon(Icons.home),
+                      backgroundColor: Color(0xffffffff),
+                      label: "Beranda"),
+                  BottomNavigationBarItem(
+                      icon: Icon(Icons.history),
+                      backgroundColor: Color(0xffffffff),
+                      label: "Riwayat"),
+                  BottomNavigationBarItem(
+                      icon: Icon(Icons.person),
+                      backgroundColor: Color(0xffffffff),
+                      label: "Profile"),
+                ],
+                onTap: (index) {
+                  _currentIndex.value = index;
+                  log("${_currentIndex.value}");
+                },
+              );
+            }));
   }
 
   Widget buatReservasiTutup(String img, String menu) {

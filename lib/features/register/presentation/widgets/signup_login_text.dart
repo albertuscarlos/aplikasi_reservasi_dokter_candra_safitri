@@ -1,3 +1,4 @@
+import 'package:aplikasi_reservasi_dokter_candra_safitri/features/auth/presentation/pages/login.dart';
 import 'package:flutter/material.dart';
 
 class SignUpLoginText extends StatelessWidget {
@@ -15,13 +16,12 @@ class SignUpLoginText extends StatelessWidget {
             style: TextStyle(color: Color(0xff199A8E)),
           ),
           onTap: () {
-            // Write Tap Code Here.
-            // Navigator.push(
-            //     context,
-            //     MaterialPageRoute(
-            //       builder: (context) => SignUpScreen(),
-            //     )
-            // );
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => LoginPage(),
+              ),
+            );
           },
         )
       ],

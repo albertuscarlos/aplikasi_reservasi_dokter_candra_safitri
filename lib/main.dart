@@ -1,11 +1,11 @@
 import 'package:aplikasi_reservasi_dokter_candra_safitri/core/shared_preference.dart';
+import 'package:aplikasi_reservasi_dokter_candra_safitri/features/navbar/presentation/pages/navbar.dart';
 import 'package:aplikasi_reservasi_dokter_candra_safitri/features/onboarding/presentation/pages/get_started_page.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/auth/presentation/pages/login.dart';
 import 'package:aplikasi_reservasi_dokter_candra_safitri/features/onboarding/presentation/pages/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:get/get.dart';
 
 int? isViewed;
 String? idPasien = "";
@@ -16,8 +16,7 @@ void main() async {
   ));
   WidgetsFlutterBinding.ensureInitialized();
   isViewed = await OnBoardingStore.getOnBoardInfo();
-  SharedPreferences pref = await SharedPreferences.getInstance();
-  idPasien = pref.getString("idPasien");
+  idPasien = await LoginDataStore.getIdPasien();
   runApp(const MainApp());
 }
 
@@ -26,12 +25,12 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
         debugShowCheckedModeBanner: false,
         home: isViewed != 0
             ? OnBoardingScreen()
             : idPasien != null
-                ? const LoginPage()
+                ? const NavBar()
                 : const GetStartedPage(),
         localizationsDelegates: GlobalMaterialLocalizations.delegates,
         supportedLocales: const [

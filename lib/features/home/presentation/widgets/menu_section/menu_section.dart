@@ -19,10 +19,8 @@ class MenuSection extends StatelessWidget {
           img: 'assets/doctor_profile.png',
           menu: 'Profil Dokter',
           onTap: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => ProfileDokter(idPasien: idPasien)));
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const ProfileDokter()));
           },
         ),
         MenuList(
@@ -30,19 +28,22 @@ class MenuSection extends StatelessWidget {
             menu: 'Buat Reservasi',
             onTap: () {
               Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          BuatReservasiPage(idPasien: idPasien)));
+                context,
+                MaterialPageRoute(
+                  builder: (context) => BuatReservasiPage(idPasien: idPasien),
+                ),
+              );
             }),
         MenuList(
             img: 'assets/queue.png',
             menu: 'Reservasi Anda',
             onTap: () {
               Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => ReservasiAnda(idPasien: idPasien)));
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ReservasiAnda(idPasien: idPasien),
+                ),
+              );
             })
         // isWithinMorningRange || isWithinAfternoonRange ? buatReservasi('assets/booking.png', 'Buat Reservasi') : buatReservasiTutup('assets/booking.png', 'Buat Reservasi'),
       ],

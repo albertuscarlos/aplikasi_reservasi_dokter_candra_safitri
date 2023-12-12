@@ -16,8 +16,11 @@ class LoginTopBar extends StatelessWidget {
                 MaterialPageRoute(
                     builder: (context) => const GetStartedPage()));
           },
-          child: const Icon(Icons.arrow_back_ios_new,
-              color: Color(0xff101623), size: 30),
+          child: const Icon(
+            Icons.arrow_back_ios_new,
+            color: Color(0xff101623),
+            size: 30,
+          ),
         ),
         Center(
           child: Text(

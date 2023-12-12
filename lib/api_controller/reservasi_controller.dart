@@ -1,5 +1,7 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'package:aplikasi_reservasi_dokter_candra_safitri/api_model/reservasi_model.dart';
+import 'package:aplikasi_reservasi_dokter_candra_safitri/main.dart';
 import 'package:http/http.dart' as http;
 
 class Reservasi {
@@ -49,28 +51,28 @@ class Reservasi {
   //   }
   // }
 
-  Future<List<DataReservasi>> getReservasiDataById($idPasien) async {
-    try {
-      final response = await http
-          .get(Uri.parse(_baseUrl + '/reservasi/?id_pasien=' + $idPasien));
-      var jsonParsed = jsonDecode(response.body);
-      var dataReservasi = jsonParsed['data'];
+  // Future<List<DataReservasi>> getReservasiDataById($idPasien) async {
+  //   try {
+  //     final response =
+  //         await http.get(Uri.parse('$_baseUrl/reservasi/?id_pasien=$idPasien'));
+  //     var jsonParsed = jsonDecode(response.body);
+  //     var dataReservasi = jsonParsed['data'];
 
-      if (response.statusCode == 200) {
-        List jsonResponse = dataReservasi;
-        return jsonResponse
-            .map((data) => DataReservasi.fromJson(data))
-            .toList();
-      } else {
-        // Return a custom error response instead of throwing an exception
-        return Future.error('Failed to load Data');
-      }
-    } catch (e) {
-      // Handle other exceptions here, e.g., network errors
-      print('Exception: $e');
-      return Future.error('Failed to load Data');
-    }
-  }
+  //     if (response.statusCode == 200) {
+  //       List jsonResponse = dataReservasi;
+  //       return jsonResponse
+  //           .map((data) => DataReservasi.fromJson(data))
+  //           .toList();
+  //     } else {
+  //       // Return a custom error response instead of throwing an exception
+  //       return Future.error('Failed to load Data');
+  //     }
+  //   } catch (e) {
+  //     // Handle other exceptions here, e.g., network errors
+  //     log('Exception: $e');
+  //     return Future.error('Failed to load Data');
+  //   }
+  // }
 
   // Get All Data Reservasi
   Future<List<DataReservasi>> getAllReservasiData() async {

@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ProfilDokterTopBar extends StatelessWidget {
-  const ProfilDokterTopBar({super.key, required this.idPasien});
-
-  final String idPasien;
+  const ProfilDokterTopBar({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,10 +11,7 @@ class ProfilDokterTopBar extends StatelessWidget {
       children: [
         GestureDetector(
           onTap: () {
-            Navigator.pop(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => NavBar(idPasien: idPasien)));
+            Navigator.pop(context);
           },
           child: const Icon(Icons.arrow_back_ios_new,
               color: Color(0xff101623), size: 30),

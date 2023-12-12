@@ -17,108 +17,122 @@ class OnBoardingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SafeArea(
-      child: Stack(
-        children: [
-          //Page View
-          PageView(
-            controller: _controller,
-            onPageChanged: (index) {
-              onLastPage.value = (index == 3);
-            },
-            children: const [
-              IntroPage1(),
-              IntroPage2(),
-              IntroPage3(),
-              IntroPage4(),
-            ],
-          ),
+      body: SafeArea(
+        child: Stack(
+          children: [
+            //Page View
+            PageView(
+              controller: _controller,
+              onPageChanged: (index) {
+                onLastPage.value = (index == 3);
+              },
+              children: const [
+                IntroPage1(),
+                IntroPage2(),
+                IntroPage3(),
+                IntroPage4(),
+              ],
+            ),
 
-          Container(
+            Container(
               alignment: const Alignment(0, 0.75),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   ValueListenableBuilder(
-                      valueListenable: onLastPage,
-                      builder: (context, value, widget) {
-                        if (value == true) {
-                          return GestureDetector(
-                              onTap: () {
-                                _controller.jumpToPage(0);
-                              },
-                              child: const Text(
-                                "Kembali",
-                                style: TextStyle(
-                                  color: Color(0xff199A8E),
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ));
-                        } else if (value == false) {
-                          return GestureDetector(
-                              onTap: () {
-                                _controller.jumpToPage(3);
-                              },
-                              child: const Text(
-                                "Lewati",
-                                style: TextStyle(
-                                  color: Color(0xff199A8E),
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ));
-                        }
-                        return const SizedBox();
-                      }),
+                    valueListenable: onLastPage,
+                    builder: (context, value, widget) {
+                      if (value == true) {
+                        return GestureDetector(
+                          onTap: () {
+                            _controller.jumpToPage(0);
+                          },
+                          child: const Text(
+                            "Kembali",
+                            style: TextStyle(
+                              color: Color(0xff199A8E),
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        );
+                      } else if (value == false) {
+                        return GestureDetector(
+                          onTap: () {
+                            _controller.jumpToPage(3);
+                          },
+                          child: const Text(
+                            "Lewati",
+                            style: TextStyle(
+                              color: Color(0xff199A8E),
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        );
+                      }
+                      return const SizedBox();
+                    },
+                  ),
                   //Indicator
                   SmoothPageIndicator(
                     controller: _controller,
                     count: 4,
                     effect: const ExpandingDotsEffect(
-                        activeDotColor: Color(0xff199A8E)),
+                      activeDotColor: Color(0xff199A8E),
+                    ),
                   ),
                   //Next
                   ValueListenableBuilder(
-                      valueListenable: onLastPage,
-                      builder: (context, value, widget) {
-                        if (value == true) {
-                          return GestureDetector(
-                              onTap: () async {
-                                int isViewed = 0;
-                                await OnBoardingStore.storeOnBoardInfo(
-                                    isViewed);
-                                Navigator.push(context,
-                                    MaterialPageRoute(builder: (context) {
-                                  return const GetStartedPage();
-                                }));
-                              },
-                              child: const Text(
-                                "Selesai",
-                                style: TextStyle(
-                                  color: Color(0xff199A8E),
-                                  fontWeight: FontWeight.bold,
+                    valueListenable: onLastPage,
+                    builder: (context, value, widget) {
+                      if (value == true) {
+                        return GestureDetector(
+                          onTap: () async {
+                            int isViewed = 0;
+                            await OnBoardingStore.storeOnBoardInfo(isViewed);
+                            if (context.mounted) {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) {
+                                    return const GetStartedPage();
+                                  },
                                 ),
-                              ));
-                        } else if (value == false) {
-                          return GestureDetector(
-                              onTap: () {
-                                _controller.nextPage(
-                                    duration: const Duration(milliseconds: 500),
-                                    curve: Curves.easeIn);
-                              },
-                              child: const Text(
-                                "Lanjut",
-                                style: TextStyle(
-                                  color: Color(0xff199A8E),
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ));
-                        }
-                        return const SizedBox();
-                      })
+                              );
+                            }
+                          },
+                          child: const Text(
+                            "Selesai",
+                            style: TextStyle(
+                              color: Color(0xff199A8E),
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        );
+                      } else if (value == false) {
+                        return GestureDetector(
+                          onTap: () {
+                            _controller.nextPage(
+                                duration: const Duration(milliseconds: 500),
+                                curve: Curves.easeIn);
+                          },
+                          child: const Text(
+                            "Lanjut",
+                            style: TextStyle(
+                              color: Color(0xff199A8E),
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        );
+                      }
+                      return const SizedBox();
+                    },
+                  ),
                 ],
-              ))
-        ],
+              ),
+            ),
+          ],
+        ),
       ),
-    ));
+    );
   }
 }

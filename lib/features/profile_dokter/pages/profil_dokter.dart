@@ -6,8 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ProfileDokter extends StatelessWidget {
-  final String idPasien;
-  const ProfileDokter({super.key, required this.idPasien});
+  const ProfileDokter({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +21,7 @@ class ProfileDokter extends StatelessWidget {
             const SizedBox(
               height: 30,
             ),
-            ProfilDokterTopBar(
-              idPasien: idPasien,
-            ),
+            const ProfilDokterTopBar(),
             const SizedBox(
               height: 53,
             ),

@@ -22,6 +22,7 @@ dependencies:
   http: ^1.1.0
   image_picker: ^1.0.4
   intl: ^0.18.1
+  meta: ^1.9.1
   rxdart: ^0.27.7
   shared_preferences: ^2.2.0
   smooth_page_indicator: ^1.1.0

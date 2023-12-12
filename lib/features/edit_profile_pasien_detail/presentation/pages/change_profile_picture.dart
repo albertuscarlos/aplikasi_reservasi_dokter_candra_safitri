@@ -1,11 +1,8 @@
-import 'dart:convert';
 import 'dart:io';
-import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:http_parser/http_parser.dart';
 
 class ChangeProfilePicture extends StatefulWidget {
   final String idPasien;
@@ -117,17 +114,12 @@ class _ChangeProfilePictureState extends State<ChangeProfilePicture> {
 
       if (response.statusCode == 200) {
         // Successful upload
-        print('Gambar diupdate');
       } else if (response.statusCode == 406) {
-        print('Server responded with a 406 status code');
-        print('Response Headers: ${response.headers}');
       } else {
         // Handle the error
-        print('Gagal mengupdate gambar. Kode status: ${response.statusCode}');
       }
     } catch (e) {
       // Handle network or other exceptions
-      print('Error: $e');
     }
   }
 

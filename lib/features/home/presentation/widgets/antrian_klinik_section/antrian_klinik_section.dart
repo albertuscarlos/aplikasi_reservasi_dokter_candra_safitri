@@ -1,14 +1,13 @@
 import 'dart:async';
+import 'package:aplikasi_reservasi_dokter_candra_safitri/core/network/home_service.dart';
+import 'package:aplikasi_reservasi_dokter_candra_safitri/features/home/data/models/response/get_antrian_klinik_response.dart';
 import 'package:aplikasi_reservasi_dokter_candra_safitri/features/home/presentation/widgets/antrian_klinik_section/antrian_klinik_available.dart';
 import 'package:aplikasi_reservasi_dokter_candra_safitri/features/home/presentation/widgets/antrian_klinik_section/antrian_klinik_kosong.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/api_model/reservasi_model.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class AntrianKlinikSection extends StatelessWidget {
-  const AntrianKlinikSection({super.key, required this.streamController});
-
-  final StreamController<DataReservasi> streamController;
+  const AntrianKlinikSection({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +17,8 @@ class AntrianKlinikSection extends StatelessWidget {
       child: Column(
         children: [
           Expanded(
-            child: StreamBuilder<DataReservasi>(
-                stream: streamController.stream,
+            child: StreamBuilder<AntrianKlinikData>(
+                stream: AntrianKlinikService.antrianlinik(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     // Kasus: Sedang memuat data

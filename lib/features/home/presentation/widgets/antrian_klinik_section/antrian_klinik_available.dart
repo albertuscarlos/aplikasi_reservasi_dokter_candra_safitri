@@ -1,4 +1,5 @@
 import 'package:aplikasi_reservasi_dokter_candra_safitri/api_model/reservasi_model.dart';
+import 'package:aplikasi_reservasi_dokter_candra_safitri/features/home/data/models/response/get_antrian_klinik_response.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -6,7 +7,7 @@ class AntrianKlinikAvailable extends StatelessWidget {
   const AntrianKlinikAvailable(
       {super.key, required this.dataReservasi, required this.statusReservasi});
 
-  final DataReservasi dataReservasi;
+  final AntrianKlinikData dataReservasi;
   final String statusReservasi;
 
   @override
@@ -30,7 +31,7 @@ class AntrianKlinikAvailable extends StatelessWidget {
                 borderRadius: BorderRadius.circular(15)),
             child: Center(
               child: Text(
-                dataReservasi.no_antrian,
+                dataReservasi.noAntrian,
                 style: GoogleFonts.inter(
                   textStyle: const TextStyle(
                     fontSize: 18,
@@ -50,7 +51,7 @@ class AntrianKlinikAvailable extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  dataReservasi.tanggal_reservasi,
+                  dataReservasi.tanggalReservasi,
                   style: GoogleFonts.inter(
                     textStyle: const TextStyle(
                       fontSize: 12,
@@ -63,7 +64,7 @@ class AntrianKlinikAvailable extends StatelessWidget {
                   height: 5,
                 ),
                 Text(
-                  dataReservasi.nama_pasien,
+                  dataReservasi.namaPasien,
                   style: GoogleFonts.inter(
                     textStyle: const TextStyle(
                       fontSize: 15,

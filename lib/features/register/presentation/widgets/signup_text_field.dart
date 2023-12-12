@@ -1,8 +1,10 @@
 import 'package:aplikasi_reservasi_dokter_candra_safitri/features/auth/presentation/cubit/obscure_password_cubit.dart';
+import 'package:aplikasi_reservasi_dokter_candra_safitri/features/register/presentation/bloc/signup_bloc.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'dart:developer';
 
 class SignUpTextField extends StatelessWidget {
   SignUpTextField(
@@ -14,7 +16,8 @@ class SignUpTextField extends StatelessWidget {
       required this.passwordController,
       required this.confirmPasswordController,
       required this.jenisKelamin,
-      required this.obscurePasswordCubit});
+      required this.obscurePasswordCubit,
+      required this.signupBloc});
 
   final TextEditingController namaLengkapController;
   final TextEditingController tanggalLahirController;
@@ -27,6 +30,7 @@ class SignUpTextField extends StatelessWidget {
   final ValueNotifier<bool> isDateTimeHint = ValueNotifier(true);
 
   final ObscurePasswordCubit obscurePasswordCubit;
+  final SignupBloc signupBloc;
 
   final RegExp nameRegEx =
       RegExp(r"^\s*([A-Za-z]{1,}([\.,] |[-']| ))+[A-Za-z]+\.?\s*$");
@@ -46,9 +50,9 @@ class SignUpTextField extends StatelessWidget {
         String selectedDate = DateFormat('yyyy-MM-dd', 'id').format(pickerDate);
         isDateTimeHint.value = !isDateTimeHint.value;
         tanggalLahirController.text = selectedDate;
-        print(tanggalLahirController);
+        log(tanggalLahirController.text);
       } else {
-        print("ERROR");
+        log("ERROR");
       }
     }
 

@@ -3,14 +3,9 @@ import 'package:aplikasi_reservasi_dokter_candra_safitri/features/register/prese
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class GetStartedPage extends StatefulWidget {
+class GetStartedPage extends StatelessWidget {
   const GetStartedPage({super.key});
 
-  @override
-  State<GetStartedPage> createState() => _GetStartedPageState();
-}
-
-class _GetStartedPageState extends State<GetStartedPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -87,7 +82,7 @@ class _GetStartedPageState extends State<GetStartedPage> {
                         child: ElevatedButton(
                           onPressed: () {
                             Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => const LoginPage()));
+                                builder: (context) => LoginPage()));
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: const Color(0xff199A8E),
@@ -115,7 +110,7 @@ class _GetStartedPageState extends State<GetStartedPage> {
                         child: ElevatedButton(
                           onPressed: () {
                             Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => const SignUpPage()));
+                                builder: (context) => SignUpPage()));
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: const Color(0xffffffff),

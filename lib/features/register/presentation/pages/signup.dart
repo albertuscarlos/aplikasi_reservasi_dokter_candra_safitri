@@ -1,21 +1,17 @@
 import 'package:aplikasi_reservasi_dokter_candra_safitri/features/auth/presentation/cubit/obscure_password_cubit.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/auth/presentation/pages/login.dart';
+import 'package:aplikasi_reservasi_dokter_candra_safitri/features/register/data/body/signup_body.dart';
+import 'package:aplikasi_reservasi_dokter_candra_safitri/features/register/presentation/bloc/signup_bloc.dart';
 import 'package:aplikasi_reservasi_dokter_candra_safitri/features/register/presentation/widgets/signup_login_text.dart';
 import 'package:aplikasi_reservasi_dokter_candra_safitri/features/register/presentation/widgets/signup_text_field.dart';
 import 'package:aplikasi_reservasi_dokter_candra_safitri/features/register/presentation/widgets/signup_button.dart';
 import 'package:aplikasi_reservasi_dokter_candra_safitri/features/register/presentation/widgets/signup_top_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../api_controller/pasien_login_controller.dart';
+import 'package:get/get.dart';
 
-class SignUpPage extends StatefulWidget {
-  const SignUpPage({super.key});
+class SignUpPage extends StatelessWidget {
+  SignUpPage({super.key});
 
-  @override
-  State<SignUpPage> createState() => _SignUpPageState();
-}
-
-class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController namaLengkapController = TextEditingController();
   final TextEditingController tanggalLahirController = TextEditingController();
   final TextEditingController noTeleponController = TextEditingController();
@@ -28,30 +24,49 @@ class _SignUpPageState extends State<SignUpPage> {
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  Pasien pasien = Pasien();
-
   @override
   Widget build(BuildContext context) {
     final obscurePasswordCubit = ObscurePasswordCubit();
+    final signupBloc = SignupBloc();
     return MultiBlocProvider(
-      providers: [BlocProvider(create: (context) => obscurePasswordCubit)],
-      child: Scaffold(
-        body: SafeArea(
-          child: SingleChildScrollView(
-            child: Container(
-              margin: const EdgeInsets.only(left: 20, right: 20),
-              child: Form(
-                key: formKey,
-                child: Column(
-                  children: [
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    const SignUpTopBar(),
-                    const SizedBox(
-                      height: 70,
-                    ),
-                    SignUpTextField(
+      providers: [
+        BlocProvider(create: (context) => obscurePasswordCubit),
+        BlocProvider(create: (context) => signupBloc),
+      ],
+      child: BlocConsumer<SignupBloc, SignupState>(
+        bloc: signupBloc,
+        listener: (context, state) {
+          if (state is SignupSuccess) {
+            namaLengkapController.clear();
+            jenisKelamin.value = '';
+            tanggalLahirController.clear();
+            noTeleponController.clear();
+            usernameController.clear();
+            passwordController.clear();
+            confirmPasswordController.clear();
+            Get.snackbar("Sign Up Success", state.response.message);
+          } else if (state is SignupFailed) {
+            Get.snackbar("Sign Up Failed", state.failedMessage);
+          }
+        },
+        builder: (context, state) {
+          return Scaffold(
+            body: SafeArea(
+              child: Container(
+                margin: const EdgeInsets.only(left: 20, right: 20),
+                child: Form(
+                  key: formKey,
+                  child: ListView(
+                    physics: const BouncingScrollPhysics(),
+                    children: [
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      const SignUpTopBar(),
+                      const SizedBox(
+                        height: 70,
+                      ),
+                      SignUpTextField(
                         namaLengkapController: namaLengkapController,
                         tanggalLahirController: tanggalLahirController,
                         noTeleponController: noTeleponController,
@@ -59,59 +74,44 @@ class _SignUpPageState extends State<SignUpPage> {
                         passwordController: passwordController,
                         confirmPasswordController: confirmPasswordController,
                         jenisKelamin: jenisKelamin,
-                        obscurePasswordCubit: obscurePasswordCubit),
-                    const SizedBox(
-                      height: 80,
-                    ),
-                    SignUpButton(onPressed: () async {
-                      if (formKey.currentState!.validate()) {
-                        //show snackbar to indicate loading
-                        ScaffoldMessenger.of(context)
-                            .showSnackBar(const SnackBar(
-                          content: Text('Processing Data'),
-                          backgroundColor: Color(0xff199A8E),
-                        ));
-
-                        bool response = await pasien.postData(
-                            namaLengkapController.text,
-                            jenisKelamin.value,
-                            tanggalLahirController.text,
-                            noTeleponController.text,
-                            usernameController.text,
-                            passwordController.text);
-                        ScaffoldMessenger.of(context).hideCurrentSnackBar();
-
-                        if (response) {
-                          ScaffoldMessenger.of(context)
-                              .showSnackBar(const SnackBar(
-                            content: Text('Registrasi akun berhasil!'),
-                            backgroundColor: Color(0xff199A8E),
-                          ));
-                          Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(
-                                  builder: (context) => const LoginPage()));
-                        } else {
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                            content: const Text(
-                                'Registrasi akun gagal, silahkan coba lagi!'),
-                            backgroundColor: Colors.red.shade300,
-                          ));
-                        }
-                      }
-                    }),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    const SignUpLoginText(),
-                    const SizedBox(
-                      height: 30,
-                    )
-                  ],
+                        obscurePasswordCubit: obscurePasswordCubit,
+                        signupBloc: signupBloc,
+                      ),
+                      const SizedBox(
+                        height: 80,
+                      ),
+                      SignUpButton(
+                          signupBloc: signupBloc,
+                          onPressed: () async {
+                            if (formKey.currentState!.validate()) {
+                              signupBloc.add(
+                                PostSignupEvent(
+                                  body: SignUpBody(
+                                    namaLengkap: namaLengkapController.text,
+                                    jenisKelamin: jenisKelamin.value,
+                                    tanggalLahir: tanggalLahirController.text,
+                                    noTelepon: noTeleponController.text,
+                                    username: usernameController.text,
+                                    password: passwordController.text,
+                                  ),
+                                ),
+                              );
+                            }
+                          }),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      const SignUpLoginText(),
+                      const SizedBox(
+                        height: 30,
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
-        ),
+          );
+        },
       ),
     );
   }

@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class IntroPage2 extends StatefulWidget {
+class IntroPage2 extends StatelessWidget {
   const IntroPage2({super.key});
 
-  @override
-  State<IntroPage2> createState() => _IntroPage2State();
-}
-
-class _IntroPage2State extends State<IntroPage2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

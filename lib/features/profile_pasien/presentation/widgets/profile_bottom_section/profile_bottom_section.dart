@@ -1,3 +1,4 @@
+import 'package:aplikasi_reservasi_dokter_candra_safitri/core/shared_preference.dart';
 import 'package:aplikasi_reservasi_dokter_candra_safitri/features/onboarding/presentation/pages/get_started_page.dart';
 import 'package:aplikasi_reservasi_dokter_candra_safitri/features/profile_pasien/presentation/widgets/profile_bottom_section/profile_element.dart';
 import 'package:aplikasi_reservasi_dokter_candra_safitri/features/profile_pasien_detail/presentation/pages/detail_profile.dart';
@@ -58,16 +59,7 @@ class ProfileBottomSection extends StatelessWidget {
                       ),
                       GestureDetector(
                           onTap: () async {
-                            SharedPreferences pref =
-                                await SharedPreferences.getInstance();
-                            await pref.remove("idPasien");
-                            await pref.remove("namaPasien");
-                            await pref.remove("jenisKelamin");
-                            await pref.remove("tanggalLahir");
-                            await pref.remove("noTelepon");
-                            await pref.remove("fotoPasien");
-                            await pref.remove("username");
-                            await pref.remove("password");
+                            await LoginDataStore.clearLoginInfo();
                             // _streamController.close();
                             // Navigate to the login or home page, for example
                             Navigator.of(context).pushAndRemoveUntil(

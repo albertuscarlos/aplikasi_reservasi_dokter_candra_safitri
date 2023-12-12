@@ -16,12 +16,12 @@ class LoginRegisterText extends StatelessWidget {
             style: TextStyle(color: Color(0xff199A8E)),
           ),
           onTap: () {
-            //Write Tap Code Here.
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const SignUpPage(),
-                ));
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => SignUpPage(),
+              ),
+            );
           },
         )
       ],

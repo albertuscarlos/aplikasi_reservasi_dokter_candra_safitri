@@ -3,7 +3,6 @@ import 'package:aplikasi_reservasi_dokter_candra_safitri/features/edit_profile_p
 import 'package:aplikasi_reservasi_dokter_candra_safitri/features/edit_profile_pasien_detail/presentation/widgets/data_after_drowdown.dart';
 import 'package:aplikasi_reservasi_dokter_candra_safitri/features/edit_profile_pasien_detail/presentation/widgets/data_before.dart';
 import 'package:aplikasi_reservasi_dokter_candra_safitri/features/edit_profile_pasien_detail/presentation/widgets/topbar.dart';
-import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -41,7 +40,6 @@ class _ChangeGenderState extends State<ChangeGender> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     getLoginCred();
   }
@@ -136,7 +134,7 @@ class _ChangeGenderState extends State<ChangeGender> {
                 ),
               ),
             ),
-            content: Container(
+            content: SizedBox(
               height: 220,
               child: Column(
                 children: [Text(subTitle), Image.asset('assets/berhasil.gif')],
