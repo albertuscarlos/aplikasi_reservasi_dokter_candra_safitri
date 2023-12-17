@@ -1,7 +1,7 @@
-import 'package:aplikasi_reservasi_dokter_candra_safitri/api_model/reservasi_model.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/home/data/models/response/get_antrian_klinik_response.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../../../data/models/response/get_antrian_klinik_response.dart';
 
 class AntrianKlinikAvailable extends StatelessWidget {
   const AntrianKlinikAvailable(

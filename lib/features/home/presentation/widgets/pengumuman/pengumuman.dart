@@ -1,10 +1,9 @@
-import 'dart:developer';
-
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/home/presentation/bloc/get_pengumuman/pengumuman_bloc.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/home/presentation/widgets/pengumuman/pengumuman_available.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../bloc/get_pengumuman/pengumuman_bloc.dart';
+import 'pengumuman_available.dart';
 
 class PengumumanPage extends StatelessWidget {
   const PengumumanPage({super.key, required this.pengumumanBloc});

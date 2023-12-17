@@ -1,13 +1,14 @@
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/buat_reservasi/data/models/body/post_reservasi_body.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/buat_reservasi/presentation/bloc/buat_reservasi/buat_reservasi_bloc.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/buat_reservasi/presentation/bloc/reservasi_by_id/reservasi_by_id_bloc.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/buat_reservasi/presentation/widgets/buat_reservasi_button_available.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/buat_reservasi/presentation/widgets/buat_reservasi_button_unavailable.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/buat_reservasi/presentation/widgets/buat_reservasi_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+
+import '../../data/models/body/post_reservasi_body.dart';
+import '../bloc/buat_reservasi/buat_reservasi_bloc.dart';
+import '../bloc/reservasi_by_id/reservasi_by_id_bloc.dart';
+import '../widgets/buat_reservasi_button_available.dart';
+import '../widgets/buat_reservasi_button_unavailable.dart';
+import '../widgets/buat_reservasi_textfield.dart';
 import '../widgets/buat_reservasi_topbar.dart';
 
 class BuatReservasiPage extends StatelessWidget {

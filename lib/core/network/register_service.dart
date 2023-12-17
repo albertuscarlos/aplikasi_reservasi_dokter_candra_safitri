@@ -1,8 +1,9 @@
-import 'package:aplikasi_reservasi_dokter_candra_safitri/core/constants.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/core/dio_client.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/register/data/body/signup_body.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/register/data/response/signup_response.dart';
 import 'package:dio/dio.dart';
+
+import '../constants.dart';
+import '../dio_client.dart';
+import '../../features/register/data/body/signup_body.dart';
+import '../../features/register/data/response/signup_response.dart';
 
 class RegisterService {
   static Future<SignUpResponse> postSignUpData(SignUpBody body) async {

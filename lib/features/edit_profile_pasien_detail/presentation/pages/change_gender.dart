@@ -1,11 +1,12 @@
-import 'package:aplikasi_reservasi_dokter_candra_safitri/api_controller/pasien_update_controller.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/edit_profile_pasien_detail/presentation/widgets/change_data_button.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/edit_profile_pasien_detail/presentation/widgets/data_after_drowdown.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/edit_profile_pasien_detail/presentation/widgets/data_before.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/edit_profile_pasien_detail/presentation/widgets/topbar.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../../../api_controller/pasien_update_controller.dart';
+import '../widgets/change_data_button.dart';
+import '../widgets/data_after_drowdown.dart';
+import '../widgets/data_before.dart';
+import '../widgets/topbar.dart';
 
 class ChangeGender extends StatefulWidget {
   const ChangeGender({super.key});

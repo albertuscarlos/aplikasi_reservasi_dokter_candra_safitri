@@ -1,9 +1,10 @@
 import 'dart:developer';
 
-import 'package:aplikasi_reservasi_dokter_candra_safitri/core/network/reservasi_service.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/reservasi_anda/data/response/reservasi_anda_response.dart';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
+
+import '../../../../../core/network/reservasi_service.dart';
+import '../../../data/response/reservasi_anda_response.dart';
 
 part 'reservasi_anda_event.dart';
 part 'reservasi_anda_state.dart';

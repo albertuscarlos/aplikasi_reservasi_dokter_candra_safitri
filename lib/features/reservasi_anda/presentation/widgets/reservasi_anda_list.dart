@@ -1,33 +1,36 @@
-import 'package:aplikasi_reservasi_dokter_candra_safitri/api_controller/reservasi_controller.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/edit_reservasi/presentation/pages/edit_reservasi.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../edit_reservasi/presentation/pages/edit_reservasi.dart';
+import '../bloc/delete_reservasi/delete_reservasi_bloc.dart';
+
 class ListReservasi extends StatelessWidget {
-  const ListReservasi(
-      {super.key,
-      required this.idPasien,
-      required this.nama,
-      required this.umur,
-      required this.alamat,
-      required this.antrian,
-      required this.delete,
-      required this.reservasiId,
-      required this.status,
-      required this.tanggal,
-      required this.reservasiApi});
+  const ListReservasi({
+    super.key,
+    required this.idPasien,
+    required this.nama,
+    required this.umur,
+    required this.alamat,
+    required this.antrian,
+    required this.delete,
+    required this.reservasiId,
+    required this.status,
+    required this.tanggal,
+    required this.deleteReservasiBloc,
+    required this.noHp,
+  });
 
   final String idPasien;
   final String umur;
   final String nama;
   final String alamat;
+  final String noHp;
   final String tanggal;
   final String status;
   final String antrian;
   final String delete;
   final String reservasiId;
-
-  final Reservasi reservasiApi;
+  final DeleteReservasiBloc deleteReservasiBloc;
 
   @override
   Widget build(BuildContext context) {
@@ -199,23 +202,10 @@ class ListReservasi extends StatelessWidget {
                       border:
                           Border(right: BorderSide(color: Color(0xfff6f6f6)))),
                   child: GestureDetector(
-                    onTap: () async {
-                      bool response =
-                          await reservasiApi.deleteReservasi(delete);
-
-                      if (response) {
-                        ScaffoldMessenger.of(context)
-                            .showSnackBar(const SnackBar(
-                          content: Text('Berhasil membatalkan reservasi'),
-                          backgroundColor: Color(0xff199A8E),
-                        ));
-                      } else {
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          content: const Text(
-                              'Gagal  membatalkan reservasi, silahkan coba lagi'),
-                          backgroundColor: Colors.red.shade300,
-                        ));
-                      }
+                    onTap: () {
+                      deleteReservasiBloc.add(
+                        DeleteReservasi(idReservasi: reservasiId),
+                      );
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -241,12 +231,18 @@ class ListReservasi extends StatelessWidget {
                   height: double.infinity,
                   child: GestureDetector(
                     onTap: () {
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => EditReservasi(
-                                  idPasien: idPasien,
-                                  idReservasi: reservasiId)));
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => EditReservasi(
+                            idReservasi: reservasiId,
+                            namaLengkap: nama,
+                            umur: umur,
+                            alamat: alamat,
+                            noHp: noHp,
+                          ),
+                        ),
+                      );
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,

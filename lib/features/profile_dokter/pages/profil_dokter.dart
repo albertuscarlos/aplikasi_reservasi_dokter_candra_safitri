@@ -1,9 +1,8 @@
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/navbar/presentation/pages/navbar.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/profile_dokter/widgets/profile_dokter_about_section.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/profile_dokter/widgets/profile_dokter_title.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/profile_dokter/widgets/profile_dokter_topbar.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+
+import '../widgets/profile_dokter_about_section.dart';
+import '../widgets/profile_dokter_title.dart';
+import '../widgets/profile_dokter_topbar.dart';
 
 class ProfileDokter extends StatelessWidget {
   const ProfileDokter({

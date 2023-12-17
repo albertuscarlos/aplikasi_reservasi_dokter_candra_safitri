@@ -1,11 +1,13 @@
 import 'dart:async';
 import 'dart:developer';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/core/shared_preference.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/home/presentation/pages/home.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/profile_pasien/presentation/pages/profile.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/riwayat_reservasi/presentation/pages/riwayat_reservasi.dart';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../../../../core/shared_preference.dart';
+import '../../../home/presentation/pages/home.dart';
+import '../../../profile_pasien/presentation/pages/profile.dart';
+import '../../../riwayat_reservasi/presentation/pages/riwayat_reservasi.dart';
 
 class NavBar extends StatefulWidget {
   const NavBar({super.key});

@@ -1,9 +1,9 @@
 import 'dart:developer';
 
-import 'package:aplikasi_reservasi_dokter_candra_safitri/core/network/reservasi_service.dart';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
+import '../../../../../core/network/reservasi_service.dart';
 import '../../../data/models/response/get_reservasi_by_id.dart';
 
 part 'reservasi_by_id_event.dart';

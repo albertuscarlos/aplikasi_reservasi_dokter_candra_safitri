@@ -1,7 +1,10 @@
-import 'package:aplikasi_reservasi_dokter_candra_safitri/core/network/reservasi_service.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/buat_reservasi/data/models/response/get_all_reservasi_response.dart';
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
+
+import '../../../../../core/network/reservasi_service.dart';
+import '../../../data/models/response/get_all_reservasi_response.dart';
 
 part 'all_reservasi_event.dart';
 part 'all_reservasi_state.dart';
@@ -19,7 +22,9 @@ class AllReservasiBloc extends Bloc<AllReservasiEvent, AllReservasiState> {
         } else if (response.status == false) {
           emit(AllReservasiFailed(errorMessage: response.message!));
         }
-      } catch (e) {}
+      } catch (e) {
+        log('All Reservasi Catch: $e');
+      }
     });
   }
 }

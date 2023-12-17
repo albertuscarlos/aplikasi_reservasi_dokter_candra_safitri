@@ -1,11 +1,12 @@
-import 'package:aplikasi_reservasi_dokter_candra_safitri/core/shared_preference.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/navbar/presentation/pages/navbar.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/onboarding/presentation/pages/get_started_page.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/onboarding/presentation/pages/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
+
+import 'core/shared_preference.dart';
+import 'features/navbar/presentation/pages/navbar.dart';
+import 'features/onboarding/presentation/pages/get_started_page.dart';
+import 'features/onboarding/presentation/pages/onboarding_screen.dart';
 
 int? isViewed;
 String? idPasien = "";

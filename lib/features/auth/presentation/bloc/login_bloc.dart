@@ -1,8 +1,11 @@
-import 'package:aplikasi_reservasi_dokter_candra_safitri/core/network/auth_service.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/auth/data/models/body/login_body.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/auth/data/models/response/login_response.dart';
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
+
+import '../../../../core/network/auth_service.dart';
+import '../../data/models/body/login_body.dart';
+import '../../data/models/response/login_response.dart';
 
 part 'login_event.dart';
 part 'login_state.dart';
@@ -20,7 +23,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           emit(LoginFailure(errorMessage: response.message));
         }
       } catch (e) {
-        print(e.toString());
+        log('Login Catch: $e');
       }
     });
   }

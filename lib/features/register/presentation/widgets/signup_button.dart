@@ -1,7 +1,8 @@
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/register/presentation/bloc/signup_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../bloc/signup_bloc.dart';
 
 class SignUpButton extends StatelessWidget {
   const SignUpButton(

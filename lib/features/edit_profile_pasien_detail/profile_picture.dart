@@ -1,10 +1,12 @@
 import 'dart:io';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/edit_profile_pasien_detail/presentation/pages/change_profile_picture.dart';
+
+import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
-import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'presentation/pages/change_profile_picture.dart';
 
 class ViewProfilePicture extends StatefulWidget {
   final String idPasien;

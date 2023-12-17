@@ -1,20 +1,16 @@
-import 'dart:developer';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/home/presentation/bloc/get_pengumuman/pengumuman_bloc.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/home/presentation/bloc/get_sharedpreference/pref_bloc.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/home/presentation/widgets/antrian_klinik_section/antrian_klinik_section.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/home/presentation/widgets/home_top_bar.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/home/presentation/widgets/menu_section/menu_section.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/home/presentation/widgets/pengumuman/pengumuman.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/home/presentation/widgets/section_title.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../bloc/get_pengumuman/pengumuman_bloc.dart';
+import '../bloc/get_sharedpreference/pref_bloc.dart';
+import '../widgets/antrian_klinik_section/antrian_klinik_section.dart';
+import '../widgets/home_top_bar.dart';
+import '../widgets/menu_section/menu_section.dart';
+import '../widgets/pengumuman/pengumuman.dart';
+import '../widgets/section_title.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
-
-  // final ValueNotifier<String> varNamaPasien;
-  // final ValueNotifier<String> varIdPasien;
-
   @override
   State<Home> createState() => _HomeState();
 }
@@ -61,7 +57,7 @@ class _HomeState extends State<Home> {
                     idPasien: state.idPasien,
                   );
                 }
-                return CircularProgressIndicator();
+                return const CircularProgressIndicator();
               },
             ),
             const SizedBox(

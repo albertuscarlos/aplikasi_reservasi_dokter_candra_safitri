@@ -1,10 +1,11 @@
 import 'dart:developer';
 
-import 'package:aplikasi_reservasi_dokter_candra_safitri/core/network/register_service.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/register/data/body/signup_body.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/register/data/response/signup_response.dart';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
+
+import '../../../../core/network/register_service.dart';
+import '../../data/body/signup_body.dart';
+import '../../data/response/signup_response.dart';
 
 part 'signup_event.dart';
 part 'signup_state.dart';

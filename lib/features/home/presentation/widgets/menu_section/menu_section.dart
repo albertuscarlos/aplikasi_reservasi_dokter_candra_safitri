@@ -1,8 +1,9 @@
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/home/presentation/widgets/menu_section/menu_list.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/profile_dokter/pages/profil_dokter.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/reservasi_anda/presentation/pages/reservasi_anda.dart';
-import '../../../../buat_reservasi/presentation/pages/buat_reservasi.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../buat_reservasi/presentation/pages/buat_reservasi.dart';
+import '../../../../profile_dokter/pages/profil_dokter.dart';
+import '../../../../reservasi_anda/presentation/pages/reservasi_anda.dart';
+import 'menu_list.dart';
 
 class MenuSection extends StatelessWidget {
   const MenuSection({super.key, required this.idPasien});

@@ -1,12 +1,12 @@
-import 'package:aplikasi_reservasi_dokter_candra_safitri/core/shared_preference.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-import 'get_started_page.dart';
+import '../../../../core/shared_preference.dart';
 import '../widgets/intro_page_1.dart';
 import '../widgets/intro_page_2.dart';
 import '../widgets/intro_page_3.dart';
 import '../widgets/intro_page_4.dart';
+import 'get_started_page.dart';
 
 class OnBoardingScreen extends StatelessWidget {
   OnBoardingScreen({super.key});

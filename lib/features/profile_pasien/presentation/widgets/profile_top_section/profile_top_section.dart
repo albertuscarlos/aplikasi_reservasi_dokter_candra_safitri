@@ -1,6 +1,7 @@
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/edit_profile_pasien_detail/profile_picture.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../../../../edit_profile_pasien_detail/profile_picture.dart';
 
 class ProfileTopSection extends StatelessWidget {
   const ProfileTopSection(

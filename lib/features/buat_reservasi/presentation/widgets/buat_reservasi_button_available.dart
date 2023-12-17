@@ -1,7 +1,8 @@
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/buat_reservasi/presentation/bloc/buat_reservasi/buat_reservasi_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../bloc/buat_reservasi/buat_reservasi_bloc.dart';
 
 class BuatReservasiButtonAvailable extends StatelessWidget {
   const BuatReservasiButtonAvailable(

@@ -1,9 +1,9 @@
 import 'dart:developer';
 
-import 'package:aplikasi_reservasi_dokter_candra_safitri/core/constants.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/core/dio_client.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/home/data/models/response/get_pengumuman_response.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/home/data/models/response/get_antrian_klinik_response.dart';
+import '../constants.dart';
+import '../dio_client.dart';
+import '../../features/home/data/models/response/get_antrian_klinik_response.dart';
+import '../../features/home/data/models/response/get_pengumuman_response.dart';
 
 class PengumumanService {
   static Future<PengumumanResponse> getPengumuman() async {

@@ -1,5 +1,3 @@
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/home/data/models/response/get_pengumuman_response.dart';
-
 class AntrianKlinikData {
   final String idPasien;
   final String idReservasi;

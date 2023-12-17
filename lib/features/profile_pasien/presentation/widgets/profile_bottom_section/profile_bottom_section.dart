@@ -1,9 +1,9 @@
-import 'package:aplikasi_reservasi_dokter_candra_safitri/core/shared_preference.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/onboarding/presentation/pages/get_started_page.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/profile_pasien/presentation/widgets/profile_bottom_section/profile_element.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/profile_pasien_detail/presentation/pages/detail_profile.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../../../../core/shared_preference.dart';
+import '../../../../profile_pasien_detail/presentation/pages/detail_profile.dart';
+import '../../../../onboarding/presentation/pages/get_started_page.dart';
+import 'profile_element.dart';
 
 class ProfileBottomSection extends StatelessWidget {
   const ProfileBottomSection({super.key, required this.idPasien});

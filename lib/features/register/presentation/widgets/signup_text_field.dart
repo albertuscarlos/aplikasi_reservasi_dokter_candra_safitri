@@ -1,10 +1,12 @@
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/auth/presentation/cubit/obscure_password_cubit.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/register/presentation/bloc/signup_bloc.dart';
+import 'dart:developer';
+
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'dart:developer';
+
+import '../../../auth/presentation/cubit/obscure_password_cubit.dart';
+import '../bloc/signup_bloc.dart';
 
 class SignUpTextField extends StatelessWidget {
   SignUpTextField(

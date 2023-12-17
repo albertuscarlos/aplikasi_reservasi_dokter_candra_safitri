@@ -1,12 +1,7 @@
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/onboarding/presentation/pages/get_started_page.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/profile_pasien/presentation/widgets/profile_bottom_section/profile_bottom_section.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/profile_pasien/presentation/widgets/profile_bottom_section/profile_element.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/profile_pasien/presentation/widgets/profile_top_section/profile_top_section.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/profile_pasien_detail/presentation/pages/detail_profile.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/edit_profile_pasien_detail/profile_picture.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+
+import '../widgets/profile_bottom_section/profile_bottom_section.dart';
+import '../widgets/profile_top_section/profile_top_section.dart';
 
 class Profile extends StatefulWidget {
   const Profile(

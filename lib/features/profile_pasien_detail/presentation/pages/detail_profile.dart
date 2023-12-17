@@ -1,11 +1,12 @@
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/edit_profile_pasien_detail/presentation/pages/change_birth_date.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/edit_profile_pasien_detail/presentation/pages/change_gender.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/edit_profile_pasien_detail/presentation/pages/change_name.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/edit_profile_pasien_detail/presentation/pages/change_phone_number.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/edit_profile_pasien_detail/presentation/pages/change_username.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../../edit_profile_pasien_detail/presentation/pages/change_birth_date.dart';
+import '../../../edit_profile_pasien_detail/presentation/pages/change_gender.dart';
+import '../../../edit_profile_pasien_detail/presentation/pages/change_name.dart';
+import '../../../edit_profile_pasien_detail/presentation/pages/change_phone_number.dart';
+import '../../../edit_profile_pasien_detail/presentation/pages/change_username.dart';
 
 class ProfilePasien extends StatefulWidget {
   final String idPasien;

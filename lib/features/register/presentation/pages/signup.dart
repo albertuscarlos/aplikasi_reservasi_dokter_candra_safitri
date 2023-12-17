@@ -1,13 +1,14 @@
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/auth/presentation/cubit/obscure_password_cubit.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/register/data/body/signup_body.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/register/presentation/bloc/signup_bloc.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/register/presentation/widgets/signup_login_text.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/register/presentation/widgets/signup_text_field.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/register/presentation/widgets/signup_button.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/register/presentation/widgets/signup_top_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+
+import '../../../auth/presentation/cubit/obscure_password_cubit.dart';
+import '../../data/body/signup_body.dart';
+import '../bloc/signup_bloc.dart';
+import '../widgets/signup_button.dart';
+import '../widgets/signup_login_text.dart';
+import '../widgets/signup_text_field.dart';
+import '../widgets/signup_top_bar.dart';
 
 class SignUpPage extends StatelessWidget {
   SignUpPage({super.key});

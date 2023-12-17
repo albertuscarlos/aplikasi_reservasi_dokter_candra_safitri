@@ -1,16 +1,16 @@
-import 'package:aplikasi_reservasi_dokter_candra_safitri/core/shared_preference.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/auth/data/models/body/login_body.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/auth/presentation/bloc/login_bloc.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/auth/presentation/cubit/obscure_password_cubit.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/auth/presentation/widgets/login_button.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/auth/presentation/widgets/login_register_text.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/auth/presentation/widgets/login_text_field.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/auth/presentation/widgets/login_top_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 
+import '../../../../core/shared_preference.dart';
 import '../../../navbar/presentation/pages/navbar.dart';
+import '../../data/models/body/login_body.dart';
+import '../bloc/login_bloc.dart';
+import '../cubit/obscure_password_cubit.dart';
+import '../widgets/login_button.dart';
+import '../widgets/login_register_text.dart';
+import '../widgets/login_text_field.dart';
+import '../widgets/login_top_bar.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});

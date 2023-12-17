@@ -1,8 +1,9 @@
 import 'dart:developer';
 
-import 'package:aplikasi_reservasi_dokter_candra_safitri/core/shared_preference.dart';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
+
+import '../../../../../core/shared_preference.dart';
 
 part 'pref_event.dart';
 part 'pref_state.dart';

@@ -7,11 +7,8 @@ class ReservasiAndaListKosong extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const SizedBox(
-          height: 70,
-        ),
         SizedBox(
           width: 280,
           child: Image.asset('assets/oops.png'),

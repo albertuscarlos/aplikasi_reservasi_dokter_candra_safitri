@@ -1,5 +1,6 @@
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/auth/presentation/pages/login.dart';
 import 'package:flutter/material.dart';
+
+import '../../../auth/presentation/pages/login.dart';
 
 class SignUpLoginText extends StatelessWidget {
   const SignUpLoginText({super.key});

@@ -1,9 +1,10 @@
 import 'dart:developer';
 
-import 'package:aplikasi_reservasi_dokter_candra_safitri/core/network/home_service.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/home/data/models/response/get_antrian_klinik_response.dart';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
+
+import '../../../../../core/network/home_service.dart';
+import '../../../data/models/response/get_antrian_klinik_response.dart';
 
 part 'antrian_klinik_event.dart';
 part 'antrian_klinik_state.dart';

@@ -1,9 +1,10 @@
 import 'dart:developer';
 
-import 'package:aplikasi_reservasi_dokter_candra_safitri/core/network/home_service.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/home/data/models/response/get_pengumuman_response.dart';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
+
+import '../../../../../core/network/home_service.dart';
+import '../../../data/models/response/get_pengumuman_response.dart';
 
 part 'pengumuman_event.dart';
 part 'pengumuman_state.dart';

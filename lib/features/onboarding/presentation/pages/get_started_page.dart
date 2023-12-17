@@ -1,7 +1,8 @@
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/auth/presentation/pages/login.dart';
-import 'package:aplikasi_reservasi_dokter_candra_safitri/features/register/presentation/pages/signup.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../../../auth/presentation/pages/login.dart';
+import '../../../register/presentation/pages/signup.dart';
 
 class GetStartedPage extends StatelessWidget {
   const GetStartedPage({super.key});
