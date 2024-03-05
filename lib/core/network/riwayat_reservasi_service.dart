@@ -5,8 +5,8 @@ import '../dio_client.dart';
 class RiwayatReservasiService {
   static Future<RiwayatReservasiResponse> getRiwayatReservasi(
       String idPasien) async {
-    final request =
-        await dioClient.get('${Constants.baseUrl}riwayat/?id_pasien=$idPasien');
+    final request = await dioClient
+        .get('${Constants.baseUrl}/riwayat/?id_pasien=$idPasien');
 
     if (request.statusCode == 200) {
       RiwayatReservasiResponse response =

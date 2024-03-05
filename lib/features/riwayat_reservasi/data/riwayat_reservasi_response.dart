@@ -9,11 +9,11 @@ class RiwayatReservasiData {
 
   factory RiwayatReservasiData.fromModel(Map<String, dynamic> json) =>
       RiwayatReservasiData(
-        namaPasien: 'nama_pasien',
-        umur: 'umur_pasien',
-        alamat: 'alamat',
-        tanggalReservasi: 'tanggal_reservasi',
-        noAntrian: 'no_antrian',
+        namaPasien: json['nama_pasien'],
+        umur: json['umur_pasien'],
+        alamat: json['alamat'],
+        tanggalReservasi: json['tanggal_reservasi'],
+        noAntrian: json['no_antrian'],
       );
 
   final String namaPasien;

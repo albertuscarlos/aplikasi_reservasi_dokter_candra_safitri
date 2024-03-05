@@ -25,54 +25,55 @@ class _HomeState extends State<Home> {
         BlocProvider(create: (context) => prefBloc),
         BlocProvider(create: (context) => pengumumanBloc),
       ],
-      child: Scaffold(
-        body: SafeArea(
-            child: ListView(
-          padding: const EdgeInsets.only(left: 20, right: 20),
-          physics: const BouncingScrollPhysics(),
-          children: [
-            const SizedBox(
-              height: 50,
-            ),
-            HomeTopBar(
-              prefBloc: prefBloc,
-            ),
-            const SizedBox(
-              height: 35,
-            ),
-            PengumumanPage(
-              pengumumanBloc: pengumumanBloc,
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            const SectionTitle(sectionTitle: "Menu"),
-            const SizedBox(
-              height: 19,
-            ),
-            BlocBuilder<PrefBloc, PrefState>(
-              builder: (context, state) {
-                if (state is PrefSuccess) {
-                  return MenuSection(
-                    idPasien: state.idPasien,
-                  );
-                }
-                return const CircularProgressIndicator();
-              },
-            ),
-            const SizedBox(
-              height: 50,
-            ),
-            const SectionTitle(sectionTitle: "Antrian Klinik"),
-            const SizedBox(
-              height: 19,
-            ),
-            const AntrianKlinikSection(),
-            const SizedBox(
-              height: 30,
-            )
-          ],
-        )),
+      child: SafeArea(
+        child: Scaffold(
+          body: ListView(
+            padding: const EdgeInsets.only(left: 20, right: 20),
+            physics: const BouncingScrollPhysics(),
+            children: [
+              const SizedBox(
+                height: 50,
+              ),
+              HomeTopBar(
+                prefBloc: prefBloc,
+              ),
+              const SizedBox(
+                height: 35,
+              ),
+              PengumumanPage(
+                pengumumanBloc: pengumumanBloc,
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              const SectionTitle(sectionTitle: "Menu"),
+              const SizedBox(
+                height: 19,
+              ),
+              BlocBuilder<PrefBloc, PrefState>(
+                builder: (context, state) {
+                  if (state is PrefSuccess) {
+                    return MenuSection(
+                      idPasien: state.idPasien,
+                    );
+                  }
+                  return const CircularProgressIndicator();
+                },
+              ),
+              const SizedBox(
+                height: 50,
+              ),
+              const SectionTitle(sectionTitle: "Antrian Klinik"),
+              const SizedBox(
+                height: 19,
+              ),
+              const AntrianKlinikSection(),
+              const SizedBox(
+                height: 30,
+              )
+            ],
+          ),
+        ),
       ),
     );
   }

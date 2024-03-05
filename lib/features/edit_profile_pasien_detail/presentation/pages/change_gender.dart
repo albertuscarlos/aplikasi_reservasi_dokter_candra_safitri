@@ -92,10 +92,6 @@ class _ChangeGenderState extends State<ChangeGender> {
 
                       if (response) {
                         updateDataFromLoginCred(jenisKelamin.toString());
-                        // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        // content: Text('Nama anda berhasil diubah!'),
-                        // backgroundColor: Color(0xff199A8E),
-                        // ));
                         _showAlert(
                             "Berhasil!", "Jenis kelamin berhasil diganti.");
                         Future.delayed(const Duration(seconds: 2), () {

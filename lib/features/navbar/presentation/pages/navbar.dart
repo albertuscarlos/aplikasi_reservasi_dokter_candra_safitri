@@ -1,10 +1,11 @@
-import 'dart:async';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../core/shared_preference.dart';
+import '../../../home/presentation/bloc/get_sharedpreference/pref_bloc.dart';
 import '../../../home/presentation/pages/home.dart';
 import '../../../profile_pasien/presentation/pages/profile.dart';
 import '../../../riwayat_reservasi/presentation/pages/riwayat_reservasi.dart';
@@ -39,10 +40,6 @@ class _NavBarState extends State<NavBar> {
     log('Enter Home with ID: ${idPasien.value}');
   }
 
-  Future<void> _reloadLoginCred() async {
-    getLoginCred();
-  }
-
   @override
   void initState() {
     super.initState();
@@ -67,47 +64,65 @@ class _NavBarState extends State<NavBar> {
     // bool isWithinAfternoonRange =
     //     now.isAfter(afternoonStartTime) && now.isBefore(afternoonEndTime);
 
+    final riwayatBloc = PrefBloc()..add(LoadPref());
+
     final pages = [
       const Home(),
-      RiwayatReservasi(idPasien: idPasien.value),
+      BlocProvider(
+        create: (context) => riwayatBloc,
+        child: BlocBuilder<PrefBloc, PrefState>(
+          bloc: riwayatBloc,
+          builder: (context, state) {
+            if (state is PrefSuccess) {
+              return RiwayatReservasi(idPasien: state.idPasien);
+            }
+            return const CircularProgressIndicator();
+          },
+        ),
+      ),
       Profile(
-          idPasien: idPasien.value,
-          img: fotoPasien.value,
-          namaPasien: namaPasien.value)
+        idPasien: idPasien.value,
+        img: fotoPasien.value,
+        namaPasien: namaPasien.value,
+      )
     ];
-    return Scaffold(
+    return SafeArea(
+      child: Scaffold(
         body: ValueListenableBuilder(
             valueListenable: _currentIndex,
             builder: (context, value, widget) {
               return pages[_currentIndex.value];
             }),
         bottomNavigationBar: ValueListenableBuilder(
-            valueListenable: _currentIndex,
-            builder: (context, value, widget) {
-              return BottomNavigationBar(
-                currentIndex: value,
-                selectedFontSize: 15,
-                selectedItemColor: const Color(0xff199A8E),
-                items: const [
-                  BottomNavigationBarItem(
-                      icon: Icon(Icons.home),
-                      backgroundColor: Color(0xffffffff),
-                      label: "Beranda"),
-                  BottomNavigationBarItem(
-                      icon: Icon(Icons.history),
-                      backgroundColor: Color(0xffffffff),
-                      label: "Riwayat"),
-                  BottomNavigationBarItem(
-                      icon: Icon(Icons.person),
-                      backgroundColor: Color(0xffffffff),
-                      label: "Profile"),
-                ],
-                onTap: (index) {
-                  _currentIndex.value = index;
-                  log("${_currentIndex.value}");
-                },
-              );
-            }));
+          valueListenable: _currentIndex,
+          builder: (context, value, widget) {
+            return BottomNavigationBar(
+              currentIndex: value,
+              selectedFontSize: 15,
+              selectedItemColor: const Color(0xff199A8E),
+              items: const [
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.home),
+                    backgroundColor: Color(0xffffffff),
+                    label: "Beranda"),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.history),
+                    backgroundColor: Color(0xffffffff),
+                    label: "Riwayat"),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.person),
+                    backgroundColor: Color(0xffffffff),
+                    label: "Profile"),
+              ],
+              onTap: (index) {
+                _currentIndex.value = index;
+                log("${_currentIndex.value}");
+              },
+            );
+          },
+        ),
+      ),
+    );
   }
 
   Widget buatReservasiTutup(String img, String menu) {

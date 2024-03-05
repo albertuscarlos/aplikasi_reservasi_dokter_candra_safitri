@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import '../../../../edit_profile_pasien_detail/profile_picture.dart';
 
 class ProfileTopSection extends StatelessWidget {
   const ProfileTopSection(
@@ -16,7 +15,7 @@ class ProfileTopSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 400,
+      height: MediaQuery.of(context).size.height,
       width: double.infinity,
       child: Container(
         decoration: const BoxDecoration(
@@ -35,19 +34,24 @@ class ProfileTopSection extends StatelessWidget {
                 Stack(
                   children: [
                     SizedBox(
-                        height: 120,
-                        width: 120,
-                        child: GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => ViewProfilePicture(
-                                        idPasien: idPasien)));
-                          },
-                          child:
-                              CircleAvatar(backgroundImage: NetworkImage(img)),
-                        )),
+                      height: 120,
+                      width: 120,
+                      child: GestureDetector(
+                        onTap: () {
+                          // Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //     builder: (context) =>
+                          //         ViewProfilePicture(idPasien: idPasien),
+                          //   ),
+                          // );
+                          Get.snackbar('Foto Profile', 'Fitur Segera Hadir!');
+                        },
+                        child: ClipRRect(
+                            borderRadius: BorderRadius.circular(70),
+                            child: Image.asset('assets/no_user.jpg')),
+                      ),
+                    ),
                   ],
                 ),
                 const SizedBox(

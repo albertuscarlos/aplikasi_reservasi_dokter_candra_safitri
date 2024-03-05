@@ -21,10 +21,8 @@ class AntrianKlinikSection extends StatelessWidget {
               stream: AntrianKlinikService.antrianlinik(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  // Kasus: Sedang memuat data
                   return const Center(child: CircularProgressIndicator());
                 } else if (snapshot.hasError) {
-                  // Kasus: Terjadi kesalahan
                   return AntrianKlinikKosong(
                     antrianKosong: "Belum ada antrian klinik",
                     noAntrian: 'A-000',
@@ -35,10 +33,8 @@ class AntrianKlinikSection extends StatelessWidget {
                     ),
                   );
                 } else if (!snapshot.hasData || snapshot.data == null) {
-                  // Kasus: Tidak ada data atau data null
                   return const Text('Tidak ada data.');
                 } else {
-                  // Kasus: Data sudah tersedia
                   return AntrianKlinikAvailable(
                       dataReservasi: snapshot.data!,
                       statusReservasi: "Proses Pemeriksaan");

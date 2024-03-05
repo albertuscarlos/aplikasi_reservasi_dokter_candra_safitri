@@ -2,8 +2,6 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:http/http.dart' as http;
-import 'package:image_picker/image_picker.dart';
 
 class ChangeProfilePicture extends StatefulWidget {
   final String idPasien;
@@ -16,17 +14,17 @@ class ChangeProfilePicture extends StatefulWidget {
 }
 
 class _ChangeProfilePictureState extends State<ChangeProfilePicture> {
-  File? _selectedImage;
+  // File? _selectedImage;
 
-  Future<void> _pickImage() async {
-    final pickedFile =
-        await ImagePicker().pickImage(source: ImageSource.gallery);
-    if (pickedFile != null) {
-      setState(() {
-        _selectedImage = File(pickedFile.path);
-      });
-    }
-  }
+  // Future<void> _pickImage() async {
+  //   final pickedFile =
+  //       await ImagePicker().pickImage(source: ImageSource.gallery);
+  //   if (pickedFile != null) {
+  //     setState(() {
+  //       _selectedImage = File(pickedFile.path);
+  //     });
+  //   }
+  // }
 
   // Future<void> _updateImage() async {
   //   if (widget.selectedImage == null) {
@@ -87,42 +85,42 @@ class _ChangeProfilePictureState extends State<ChangeProfilePicture> {
   //   }
   // }
 
-  Future<void> _updateImage() async {
-    if (widget.selectedImage == null) {
-      // No image selected
-      return;
-    }
+  // Future<void> _updateImage() async {
+  //   if (widget.selectedImage == null) {
+  //     // No image selected
+  //     return;
+  //   }
 
-    final apiUrl =
-        'https://reservasi.albertuscarlos-workspace.my.id/api/pasien/foto/update/';
+  //   final apiUrl =
+  //       'https://reservasi.albertuscarlos-workspace.my.id/api/pasien/foto/update/';
 
-    try {
-      var request =
-          http.MultipartRequest('POST', Uri.parse(apiUrl + widget.idPasien));
-      request.headers['Content-Type'] = 'multipart/form-data; charset=utf-8';
-      request.headers['Accept'] = '*/*';
-      request.headers['Connection'] = 'keep-alive';
-      request.headers['Accept-Encoding'] = 'gzip, deflate, br';
+  //   try {
+  //     var request =
+  //         http.MultipartRequest('POST', Uri.parse(apiUrl + widget.idPasien));
+  //     request.headers['Content-Type'] = 'multipart/form-data; charset=utf-8';
+  //     request.headers['Accept'] = '*/*';
+  //     request.headers['Connection'] = 'keep-alive';
+  //     request.headers['Accept-Encoding'] = 'gzip, deflate, br';
 
-      request.files.add(
-        await http.MultipartFile.fromPath(
-          'foto_pasien',
-          widget.selectedImage!.path,
-        ),
-      );
+  //     request.files.add(
+  //       await http.MultipartFile.fromPath(
+  //         'foto_pasien',
+  //         widget.selectedImage!.path,
+  //       ),
+  //     );
 
-      var response = await request.send();
+  //     var response = await request.send();
 
-      if (response.statusCode == 200) {
-        // Successful upload
-      } else if (response.statusCode == 406) {
-      } else {
-        // Handle the error
-      }
-    } catch (e) {
-      // Handle network or other exceptions
-    }
-  }
+  //     if (response.statusCode == 200) {
+  //       // Successful upload
+  //     } else if (response.statusCode == 406) {
+  //     } else {
+  //       // Handle the error
+  //     }
+  //   } catch (e) {
+  //     // Handle network or other exceptions
+  //   }
+  // }
 
 // final Dio dio = Dio();
 // Future<void> _updateImage() async {
@@ -206,7 +204,7 @@ class _ChangeProfilePictureState extends State<ChangeProfilePicture> {
             const SizedBox(
               height: 100,
             ),
-            SizedBox(height: 400, child: Image.file(widget.selectedImage!)),
+            SizedBox(height: 400, child: Image.file(widget.selectedImage)),
             const SizedBox(
               height: 100,
             ),
@@ -214,7 +212,7 @@ class _ChangeProfilePictureState extends State<ChangeProfilePicture> {
               height: 40,
               child: ElevatedButton(
                 onPressed: () async {
-                  _updateImage();
+                  // _updateImage();
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xff199A8E),

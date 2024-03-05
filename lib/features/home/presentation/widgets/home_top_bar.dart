@@ -43,14 +43,14 @@ class HomeTopBar extends StatelessWidget {
           ],
         ),
         //User images
-        Container(
-          height: 50,
-          width: 50,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(50),
-            color: Colors.blue,
-          ),
-        ),
+        // Container(
+        //   height: 50,
+        //   width: 50,
+        //   decoration: BoxDecoration(
+        //     borderRadius: BorderRadius.circular(50),
+        //   ),
+        //   child: Image.asset('assets/no_user.jpg'),
+        // ),
       ],
     );
   }

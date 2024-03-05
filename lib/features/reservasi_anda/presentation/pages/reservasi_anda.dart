@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
@@ -53,6 +55,7 @@ class _ReservasiAndaState extends State<ReservasiAnda> {
                   BlocBuilder<ReservasiAndaBloc, ReservasiAndaState>(
                     builder: (context, state) {
                       if (state is ReservasiAndaSuccess) {
+                        log('Reservasi Data Loaded!');
                         final isiData = state.reservasi;
                         return Expanded(
                           child: Column(
@@ -85,6 +88,7 @@ class _ReservasiAndaState extends State<ReservasiAnda> {
                           ),
                         );
                       } else if (state is ReservasiAndaFailed) {
+                        log('Reservasi Data Failed!');
                         return const Expanded(
                           child: ReservasiAndaListKosong(),
                         );
