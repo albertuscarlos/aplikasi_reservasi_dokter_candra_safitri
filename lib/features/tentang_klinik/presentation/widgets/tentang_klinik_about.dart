@@ -1,8 +1,9 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class ProfileDokterAboutSection extends StatelessWidget {
-  const ProfileDokterAboutSection({super.key});
+class TentangKlinikAbout extends StatelessWidget {
+  const TentangKlinikAbout({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +12,7 @@ class ProfileDokterAboutSection extends StatelessWidget {
         SizedBox(
           width: 343,
           child: Text(
-            "Dokter Candra Safitri merupakan Dokter sekaligus pemilik dari Klinik dr. Candra Safitri. Dokter Candra Safitri mendirikan Klinik ini pada tahun 2022 yang berfokus untuk membantu warga sekitar supaya akses ke lini kesehatan semakin mudah",
+            "Klinik dr. Candra Safitri merupakan salah satu klinik yang berlokasi di Triharjo, Wates, Kulon Progo.",
             textAlign: TextAlign.justify,
             style: GoogleFonts.inter(
               textStyle: const TextStyle(

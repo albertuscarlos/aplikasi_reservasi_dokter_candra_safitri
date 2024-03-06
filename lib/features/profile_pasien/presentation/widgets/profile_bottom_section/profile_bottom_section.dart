@@ -1,4 +1,6 @@
+import 'package:aplikasi_reservasi_dokter_candra_safitri/features/tentang_klinik/presentation/pages/tentang_klinik.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 import '../../../../../core/shared_preference.dart';
 import '../../../../profile_pasien_detail/presentation/pages/detail_profile.dart';
@@ -48,9 +50,18 @@ class ProfileBottomSection extends StatelessWidget {
                       height: 20,
                       color: Color(0xffE8F3F1),
                     ),
-                    const ProfileElement(
-                        icon: Icons.emergency_outlined,
-                        label: "Tentang Klinik"),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => TentangKlinik(),
+                          ),
+                        );
+                      },
+                      child: const ProfileElement(
+                          icon: Icons.emergency_outlined,
+                          label: "Tentang Klinik"),
+                    ),
                     const Divider(
                       thickness: 1,
                       height: 20,
