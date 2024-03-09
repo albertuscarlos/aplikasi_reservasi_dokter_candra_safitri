@@ -42,7 +42,6 @@ class _ChangePhoneState extends State<ChangePhone> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     getLoginCred();
   }
@@ -181,7 +180,7 @@ class _ChangePhoneState extends State<ChangePhone> {
                 ),
               ),
             ),
-            content: Container(
+            content: SizedBox(
               height: 220,
               child: Column(
                 children: [Text(subTitle), Image.asset('assets/berhasil.gif')],

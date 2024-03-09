@@ -1,6 +1,5 @@
 import 'package:aplikasi_reservasi_dokter_candra_safitri/features/tentang_klinik/presentation/pages/tentang_klinik.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 import '../../../../../core/shared_preference.dart';
 import '../../../../profile_pasien_detail/presentation/pages/detail_profile.dart';
@@ -54,7 +53,7 @@ class ProfileBottomSection extends StatelessWidget {
                       onTap: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => TentangKlinik(),
+                            builder: (context) => const TentangKlinik(),
                           ),
                         );
                       },

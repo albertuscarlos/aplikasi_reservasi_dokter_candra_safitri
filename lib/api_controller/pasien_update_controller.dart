@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:http/http.dart' as http;
 
 class UpdatePasien {
@@ -15,14 +17,12 @@ class UpdatePasien {
         "id_pasien": id_pasien,
       });
       if (response.statusCode == 200) {
-        print('true: $response');
         return true;
       } else {
-        print('false: $response');
         return false;
       }
     } catch (e) {
-      print(e.toString());
+      log('Ubah Nama Pasien Catch: $e');
     }
   }
 
@@ -43,7 +43,7 @@ class UpdatePasien {
         return false;
       }
     } catch (e) {
-      print(e.toString());
+      log('Ubah Jenis Kelamin Catch: $e');
     }
   }
 
@@ -61,11 +61,11 @@ class UpdatePasien {
       if (response.statusCode == 200) {
         return true;
       } else {
-        print('error: ${response.statusCode}');
+        log('error: ${response.statusCode}');
         return false;
       }
     } catch (e) {
-      print(e.toString());
+      log('Ubah Tanggal Lahir Pasien: $e');
     }
   }
 
@@ -86,7 +86,7 @@ class UpdatePasien {
         return false;
       }
     } catch (e) {
-      print(e.toString());
+      log('Ubah Nomor Telepon Pasien: $e');
     }
   }
 
@@ -107,7 +107,7 @@ class UpdatePasien {
         return false;
       }
     } catch (e) {
-      print(e.toString());
+      log('Ubah Username Pasien: $e');
     }
   }
 }

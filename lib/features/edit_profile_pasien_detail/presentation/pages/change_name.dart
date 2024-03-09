@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -107,7 +109,7 @@ class _ChangeNameState extends State<ChangeName> {
 
                         bool response = await updatePasienApi.ubahNamaPasien(
                             namaLengkapController.text, idPasien);
-                        print('response: $response');
+                        log('response: $response');
 
                         ScaffoldMessenger.of(context).hideCurrentSnackBar();
 
@@ -155,10 +157,13 @@ class _ChangeNameState extends State<ChangeName> {
                 ),
               ),
             ),
-            content: Container(
-              height: 220,
+            content: SizedBox(
+              height: 240,
               child: Column(
-                children: [Text(subTitle), Image.asset('assets/berhasil.gif')],
+                children: [
+                  Text(subTitle),
+                  Image.asset('assets/berhasil.gif'),
+                ],
               ),
             ),
           );

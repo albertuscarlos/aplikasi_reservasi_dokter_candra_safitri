@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
@@ -30,7 +32,6 @@ class _ChangeBirthState extends State<ChangeBirth> {
     setState(() {
       tanggalLahirSekarang = pref.getString("tanggalLahir")!;
       idPasien = pref.getString("idPasien")!;
-      print('id: $idPasien');
     });
   }
 
@@ -44,7 +45,6 @@ class _ChangeBirthState extends State<ChangeBirth> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     getLoginCred();
   }
@@ -107,7 +107,6 @@ class _ChangeBirthState extends State<ChangeBirth> {
                           Navigator.of(context).pop(); // Close the AlertDialog
                         });
                       } else {
-                        print(response);
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                           content: const Text(
                               'Ubah data reservasi gagal, silahkan coba lagi!'),
@@ -138,10 +137,10 @@ class _ChangeBirthState extends State<ChangeBirth> {
       setState(() {
         isDateTimeHint = !isDateTimeHint;
         tanggalLahirController.text = _selectedDate;
-        print(tanggalLahirController);
+        log(tanggalLahirController.toString());
       });
     } else {
-      print("ERROR");
+      log("ERROR");
     }
   }
 
@@ -161,7 +160,7 @@ class _ChangeBirthState extends State<ChangeBirth> {
                 ),
               ),
             ),
-            content: Container(
+            content: SizedBox(
               height: 220,
               child: Column(
                 children: [Text(subTitle), Image.asset('assets/berhasil.gif')],

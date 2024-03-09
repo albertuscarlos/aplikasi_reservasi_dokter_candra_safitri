@@ -64,14 +64,14 @@ class _NavBarState extends State<NavBar> {
     // bool isWithinAfternoonRange =
     //     now.isAfter(afternoonStartTime) && now.isBefore(afternoonEndTime);
 
-    final riwayatBloc = PrefBloc()..add(LoadPref());
+    final prefBloc = PrefBloc()..add(LoadPref());
 
     final pages = [
       const Home(),
       BlocProvider(
-        create: (context) => riwayatBloc,
+        create: (context) => prefBloc,
         child: BlocBuilder<PrefBloc, PrefState>(
-          bloc: riwayatBloc,
+          bloc: prefBloc,
           builder: (context, state) {
             if (state is PrefSuccess) {
               return RiwayatReservasi(idPasien: state.idPasien);
@@ -80,10 +80,22 @@ class _NavBarState extends State<NavBar> {
           },
         ),
       ),
-      Profile(
-        idPasien: idPasien.value,
-        img: fotoPasien.value,
-        namaPasien: namaPasien.value,
+      BlocProvider(
+        create: (context) => prefBloc,
+        child: BlocBuilder<PrefBloc, PrefState>(
+          bloc: prefBloc,
+          builder: (context, state) {
+            if (state is PrefSuccess) {
+              return Profile(
+                idPasien: state.idPasien,
+                img: state.fotoPasien,
+                namaPasien: state.namaPasien,
+              );
+            } else {
+              return const CircularProgressIndicator();
+            }
+          },
+        ),
       )
     ];
     return SafeArea(

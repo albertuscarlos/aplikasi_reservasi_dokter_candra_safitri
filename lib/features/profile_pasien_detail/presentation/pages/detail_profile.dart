@@ -48,7 +48,7 @@ class _ProfilePasienState extends State<ProfilePasien> {
     return Scaffold(
       body: SafeArea(
           child: Container(
-        margin: EdgeInsets.only(left: 20, right: 20),
+        margin: const EdgeInsets.only(left: 20, right: 20),
         child: Column(
           children: [
             const SizedBox(
@@ -60,7 +60,7 @@ class _ProfilePasienState extends State<ProfilePasien> {
                   onTap: () {
                     Navigator.pop(context);
                   },
-                  child: Icon(Icons.arrow_back_sharp,
+                  child: const Icon(Icons.arrow_back_sharp,
                       color: Color(0xff101623), size: 30),
                 ),
                 Center(
@@ -90,16 +90,18 @@ class _ProfilePasienState extends State<ProfilePasien> {
                               )));
                 },
                 child: detailProfileElement("Nama", varNamaPasien)),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             GestureDetector(
                 onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => ChangeGender()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const ChangeGender()));
                 },
                 child: detailProfileElement("Jenis Kelamin", varJenisKelamin)),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             GestureDetector(
@@ -110,7 +112,7 @@ class _ProfilePasienState extends State<ProfilePasien> {
                           builder: (context) => const ChangeBirth()));
                 },
                 child: detailProfileElement("Tanggal Lahir", varTanggalLahir)),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             GestureDetector(
@@ -122,7 +124,7 @@ class _ProfilePasienState extends State<ProfilePasien> {
                 },
                 child: detailProfileElement(
                     "Nomor Telepon", "+62" + varNoTelepon)),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             GestureDetector(
@@ -148,7 +150,7 @@ class _ProfilePasienState extends State<ProfilePasien> {
             bottom: BorderSide(
                 color: title == "Username"
                     ? Colors.transparent
-                    : Color(0xffE8F3F1))),
+                    : const Color(0xffE8F3F1))),
         color: Colors.transparent,
       ),
       child: SizedBox(
@@ -167,7 +169,7 @@ class _ProfilePasienState extends State<ProfilePasien> {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 5,
             ),
             Text(

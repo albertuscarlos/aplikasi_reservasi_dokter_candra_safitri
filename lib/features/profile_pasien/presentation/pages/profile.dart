@@ -23,27 +23,35 @@ class Profile extends StatelessWidget {
     return SafeArea(
       child: BlocProvider(
         create: (context) => prefBloc,
-        child: Scaffold(
-          body: Stack(
-            children: [
-              BlocBuilder<PrefBloc, PrefState>(
-                bloc: prefBloc,
-                builder: (context, state) {
-                  if (state is PrefSuccess) {
-                    return ProfileTopSection(
-                      idPasien: state.idPasien,
-                      img: img,
-                      namaPasien: state.namaPasien,
-                    );
-                  } else {
-                    return const CircularProgressIndicator();
-                  }
-                },
-              ),
-              ProfileBottomSection(
-                idPasien: idPasien,
-              ),
-            ],
+        child: RefreshIndicator(
+          onRefresh: () async {
+            prefBloc.add(LoadPref());
+          },
+          child: Scaffold(
+            body: Stack(
+              children: [
+                BlocBuilder<PrefBloc, PrefState>(
+                  bloc: prefBloc,
+                  builder: (context, state) {
+                    if (state is PrefSuccess) {
+                      return ProfileTopSection(
+                        idPasien: state.idPasien,
+                        img: img,
+                        namaPasien: state.namaPasien,
+                      );
+                    } else {
+                      return const CircularProgressIndicator();
+                    }
+                  },
+                ),
+                const SizedBox(
+                  height: 100,
+                ),
+                ProfileBottomSection(
+                  idPasien: idPasien,
+                ),
+              ],
+            ),
           ),
         ),
       ),

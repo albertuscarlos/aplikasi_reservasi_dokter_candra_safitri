@@ -16,9 +16,24 @@ class PrefBloc extends Bloc<PrefEvent, PrefState> {
       try {
         final namaPasien = await LoginDataStore.getNamaPasien();
         final idPasien = await LoginDataStore.getIdPasien();
+        final jenisKelamin = await LoginDataStore.getJenisKelamin();
+        final tanggalLahir = await LoginDataStore.getTanggalLahir();
+        final noTelepon = await LoginDataStore.getNoTelepon();
+        final fotoPasien = await LoginDataStore.getFotoPasien();
+        final username = await LoginDataStore.getUsername();
 
         if (namaPasien != null || idPasien != null) {
-          emit(PrefSuccess(namaPasien: namaPasien!, idPasien: idPasien!));
+          emit(
+            PrefSuccess(
+              namaPasien: namaPasien!,
+              idPasien: idPasien!,
+              jenisKelamin: jenisKelamin!,
+              tanggalLahir: tanggalLahir!,
+              noTelepon: noTelepon!,
+              fotoPasien: fotoPasien!,
+              username: username!,
+            ),
+          );
         } else {
           emit(PrefFailure());
         }

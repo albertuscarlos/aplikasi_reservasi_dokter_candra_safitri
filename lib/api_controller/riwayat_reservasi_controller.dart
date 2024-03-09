@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'package:aplikasi_reservasi_dokter_candra_safitri/api_model/riwayat_reservasi_model.dart';
 import 'package:http/http.dart' as http;
 
@@ -37,7 +38,7 @@ class Riwayat {
       }
     } catch (e) {
       // Handle other exceptions here, e.g., network errors
-      print('Exception: $e');
+      log('Exception: $e');
       return Future.error('Failed to load Data - Exception: $e');
     }
   }
