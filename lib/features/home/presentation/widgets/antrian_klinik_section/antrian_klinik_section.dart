@@ -1,6 +1,7 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import '../../../../../core/network/home_service.dart';
 import '../../../data/models/response/get_antrian_klinik_response.dart';
 import 'antrian_klinik_available.dart';
@@ -36,8 +37,9 @@ class AntrianKlinikSection extends StatelessWidget {
                   return const Text('Tidak ada data.');
                 } else {
                   return AntrianKlinikAvailable(
-                      dataReservasi: snapshot.data!,
-                      statusReservasi: "Proses Pemeriksaan");
+                    dataReservasi: snapshot.data!,
+                    statusReservasi: "Proses Pemeriksaan",
+                  );
                 }
               },
             ),

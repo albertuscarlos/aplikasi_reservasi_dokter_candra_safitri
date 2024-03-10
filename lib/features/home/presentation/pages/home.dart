@@ -70,7 +70,7 @@ class _HomeState extends State<Home> {
               const AntrianKlinikSection(),
               const SizedBox(
                 height: 30,
-              )
+              ),
             ],
           ),
         ),

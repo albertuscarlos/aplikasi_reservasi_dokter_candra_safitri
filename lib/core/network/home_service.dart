@@ -41,7 +41,7 @@ class AntrianKlinikService {
   }
 
   static Stream<AntrianKlinikData> antrianlinik() {
-    final stream = Stream.periodic(const Duration(seconds: 3))
+    final stream = Stream.periodic(const Duration(seconds: 5))
         .asyncMap((_) => getAllReservasi());
     return stream;
   }
